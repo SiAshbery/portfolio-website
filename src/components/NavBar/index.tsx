@@ -12,7 +12,7 @@ const navLinks: navLink[] = [
     { title: 'Contact', href: '#contact' },
 ];
 
-export const NavBar = () => {
+const NavBar = () => {
     return (
         <nav className="fixed top-0 left-0 right-0 z-10 bg-[#121212] bg-opacity-90">
             <div className="flex flex-wrap items-center justify-between mx-auto py-4 px-8">
@@ -25,3 +25,5 @@ export const NavBar = () => {
         </nav>
     );
 };
+
+export default NavBar;
