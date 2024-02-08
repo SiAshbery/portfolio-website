@@ -6,8 +6,8 @@ import TabsSection from './TabsSection';
 
 const AboutMe = () => {
     return (
-        <div className="flex flex-row">
-            <ThreeScene className="mr-8" renderScene={test} height={400} width={400} />
+        <div className="flex flex-col-reverse md:flex-row mb-12">
+            <ThreeScene className="mr-8 flex flex-row justify-center items-center" renderScene={test} height={400} width={400} />
 
             <div>
                 <h2 className="text-[#ADB7BE] text-4xl mb-4">About Me</h2>

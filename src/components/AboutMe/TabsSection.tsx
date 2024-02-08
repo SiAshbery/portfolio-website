@@ -3,7 +3,9 @@
 import React, { useState } from 'react';
 import shortid from 'shortid';
 
-const tabs = [
+type Tab = { title: string; content: string[] | React.ReactNode[] };
+
+const tabs: Tab[] = [
     {
         title: 'Skills',
         content: [
@@ -20,6 +22,7 @@ const tabs = [
             'Unity',
             'C#',
             'Godot',
+            'Three JS',
         ],
     },
     {
@@ -88,30 +91,34 @@ const tabs = [
 ];
 
 const TabsSection = () => {
-    const [currentTab, setCurrentTab] = useState(tabs[0]);
+    const [currentTab, setCurrentTab] = useState<Tab>();
     return (
-        <>
-            <div className="text-[#ADB7BE]">
-                {tabs.map((tab) => (
-                    <button
-                        key={tab.title}
-                        onClick={() => {
-                            setCurrentTab(tab);
-                        }}
-                        className={`mr-4 hover:text-white ${
-                            currentTab.title === tab.title ? 'border-b-2' : ''
-                        }`}
-                    >
-                        {tab.title}
-                    </button>
-                ))}
-            </div>
-            <ul className="text-[#ADB7BE]">
-                {currentTab.content.map((item) => (
-                    <li key={shortid.generate()}>{item}</li>
-                ))}
-            </ul>
-        </>
+        <div className="text-[#ADB7BE] flex flex-col lg:flex-row justify-between">
+            {tabs.map((tab) => (
+                <div>
+                    <div className="m-auto relative">
+                        <button
+                            key={tab.title}
+                            onClick={() => {
+                                setCurrentTab(tab);
+                            }}
+                            className={`mr-4 hover:text-white ${
+                                currentTab && currentTab.title === tab.title ? 'border-b-2' : ''
+                            } w-full lg:w-auto`}
+                        >
+                            {tab.title}
+                        </button>
+                    </div>
+                    {currentTab === tab && (
+                        <ul className="text-[#ADB7BE]">
+                            {currentTab.content.map((item) => (
+                                <li key={shortid.generate()}>{item}</li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+            ))}
+        </div>
     );
 };
 
